@@ -33,6 +33,9 @@ public:
 	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Components")		
+	class UHealthComponent* HealthManager;
+
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -106,6 +109,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CheckAmmo();
+
+	UFUNCTION(BlueprintCallable)
+	void UseMedKit();
 
 	void ReinitWidgets();
 };

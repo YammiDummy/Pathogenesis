@@ -16,6 +16,8 @@
 #include "WeaponActor.h"
 #include "DataAssets/Ammo.h"
 #include "DataAssets/Mag.h"
+#include "PathogenesisMedKit.h"
+#include "HealthComponent.h"
 
 APathogenesisCharacter::APathogenesisCharacter()
 {
@@ -71,6 +73,10 @@ APathogenesisCharacter::APathogenesisCharacter()
 	PrimaryActorTick.bStartWithTickEnabled = true;
 
 	TeamId = FGenericTeamId(0);
+
+
+
+	HealthManager = CreateDefaultSubobject<UHealthComponent>(TEXT("Health Manager"));
 
 }
 
@@ -429,6 +435,19 @@ void APathogenesisCharacter::CheckAmmo()
 			CurrentWeapon->OnAmmoChanged.Broadcast(Count);
 		}
 	}
+}
+
+void APathogenesisCharacter::UseMedKit()
+{
+	auto& items = EquipmentInventoryComponent->GetItems();
+	APathogenesisMedKit* MedKit = Cast<APathogenesisMedKit>(items.Find(7)->ItemActor);
+	if (MedKit)
+	{
+		HealthManager->AddHealth(MedKit->Power);
+		HealthManager->OnDamageTaken.Broadcast(HealthManager->GetHealthPercentage());
+		EquipmentInventoryComponent->ClearItem(7);
+	}
+	
 }
 
 void APathogenesisCharacter::ReinitWidgets()

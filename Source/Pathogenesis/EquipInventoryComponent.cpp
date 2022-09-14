@@ -13,7 +13,7 @@ UEquipInventoryComponent::UEquipInventoryComponent()
 	EquipSlots.Add(4, EEquipSlot::ES_Vest);
 	EquipSlots.Add(5, EEquipSlot::ES_Vest);
 	EquipSlots.Add(6, EEquipSlot::ES_Vest);
-	EquipSlots.Add(7, EEquipSlot::ES_Vest);
+	EquipSlots.Add(7, EEquipSlot::ES_Supply);
 }
 
 int32 UEquipInventoryComponent::GetMaxItemAmount(int32 SlotIndex, UItem* Item)

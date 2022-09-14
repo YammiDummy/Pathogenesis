@@ -16,7 +16,8 @@ enum class EEquipSlot : uint8
 	ES_Body,
 	ES_Primary,
 	ES_Secondary,
-	ES_Vest
+	ES_Vest,
+	ES_Supply
 };
 
 UENUM(BlueprintType)
